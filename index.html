@@ -18,7 +18,7 @@
 
 <div id='map'></div>
 <div class='pill pad1 toggles fr'>
-    <a href='#' id='busstops' class='col12 button stroke'>Bus Stops</a>
+    <a href='#' id='bus stops' class='col12 button stroke'>Bus Stops</a>
     <a href='#' id='schools' class='col12 button stroke'>Schools</a>
 </div>
 <script>
@@ -31,14 +31,15 @@ var map = new mapboxgl.Map({
     hash: true
 });
 
-map.on('load', function() {
-    $('#busstops').on('click', function(e) {
+map.on('load', function(e) {
+    $('.toggles').on('click', function(e) {
         e.preventDefault();
-        toggle('bus stops');
-        if ($(this).hasClass('active')) {
-          $(this).removeClass('active');
+        var layerType = e.target.id.split('#')[0];
+        toggle(layerType);
+        if ($(e.target).hasClass('active')) {
+          $(e.target).removeClass('active');
         } else {
-          $(this).addClass('active');
+          $(e.target).addClass('active');
         }
     });
 });
