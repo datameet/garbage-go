@@ -1,0 +1,18 @@
+.toggles {
+    width: 250px;
+}
+
+.button.stroke {
+    box-shadow: 0px 0px 0px 2px #683B18 inset !important;
+    color: #683B18;
+}
+
+.button.stroke.active {
+    background-color: #DACEC6 !important;
+    color: #683B18 !important;    
+}
+
+.button.stroke:hover {
+    background-color: #DACEC6 !important;
+    color: #683B18 !important;
+}

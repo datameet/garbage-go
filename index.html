@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Garbage Go</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.26.0/mapbox-gl.css' rel='stylesheet' />
+    <link href="https://www.mapbox.com/base/latest/base.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+    <style>
+        body { margin:0; padding:0; }
+        #map { position:absolute; top:0; bottom:0; width:100%; }
+    </style>
+</head>
+<body>
+
+<div id='map'></div>
+<div class='pill pad1 toggles fr'>
+    <a href='#' id='busstops' class='col12 button stroke'>Bus Stops</a>
+    <a href='#' id='schools' class='col12 button stroke'>Schools</a>
+</div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1IjoiZ2VvaGFja2VyIiwiYSI6ImFIN0hENW8ifQ.GGpH9gLyEg0PZf3NPQ7Vrg';
+var map = new mapboxgl.Map({
+    container: 'map', // container id
+    style: 'mapbox://styles/geohacker/civ0lbcl601i02jl80ytylka5', //stylesheet location
+    center: [77.5955, 12.9739], // starting position
+    zoom: 11.2,
+    hash: true
+});
+
+map.on('load', function() {
+    $('#busstops').on('click', function(e) {
+        e.preventDefault();
+        toggle('bus stops');
+        if ($(this).hasClass('active')) {
+          $(this).removeClass('active');
+        } else {
+          $(this).addClass('active');
+        }
+    });
+});
+
+function toggle(id) {
+  var currentState = map.getLayoutProperty(id, 'visibility');
+  var nextState = currentState === 'none' ? 'visible' : 'none';
+  map.setLayoutProperty(id, 'visibility', nextState);
+}
+
+function hide(id) {
+  map.setLayoutProperty(id, 'visibility', 'none');
+}
+</script>
+
+</body>
+</html>
