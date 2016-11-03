@@ -31,6 +31,8 @@ var map = new mapboxgl.Map({
     hash: true
 });
 
+map.addControl(new mapboxgl.NavigationControl({position: 'top-left'}));
+
 map.on('load', function(e) {
     $('.toggles').on('click', function(e) {
         e.preventDefault();
